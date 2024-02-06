@@ -39,8 +39,20 @@
         ],
 
     ];
+    if (isset($_GET['parking']) && !empty($_GET['parking'])) {
 
-?>
+        $temp = [];
+
+        foreach ($hotels as $hotel) {
+            $park = $hotel['parking'] ? 'si' : 'no';
+            if ($park == $_GET['parking'] ) {
+               $temp[] = $hotel;
+            }
+        }
+        $hotels = $temp;
+    }
+    
+     ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,6 +71,34 @@
         <h1 class=" text-center ">
             Hotel
         </h1>
+    </div>
+
+    <div class="container">
+        <form action="./index.php" method="get">
+
+            <div>
+                <label for="parking">Desideri un pargheggio</label>
+                <select name="parking" id="parking">
+                    <option value="">Scegli</option>
+                    <option value="si">Pargheggio disponibile</option>
+                    <option value="no">Parcheggio non disponibile</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="vote">Seleziona un voto da 1 a 5</label>
+                <select name="vote" id="vote">
+                    <option value="">Scegli</option> 
+                    <option value="1">1</option>     
+                    <option value="2">2</option>     
+                    <option value="3">3</option>     
+                    <option value="4">4</option>     
+                    <option value="5">5</option>          
+
+                </select>
+            </div>
+            <button> invia </button>
+        </form>
     </div>
     <div class="container">
             <table class="table">
@@ -83,7 +123,7 @@
                             <td><?php  
                             
                                     if ($hotel['parking'] == true ) {
-                                        echo 'Parcheggio Disponibile';
+                                        echo 'Parcheggio disponibile';
                                     }
                                     else{
                                         echo "Parcheggio non disponibile";
