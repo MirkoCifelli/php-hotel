@@ -80,7 +80,16 @@
                     
                             <th scope="row"><?php echo $hotel['name'] ?></th>
                             <td><?php echo $hotel['description'] ?> </td>
-                            <td><?php echo $hotel['parking'] ?></td>
+                            <td><?php  
+                            
+                                    if ($hotel['parking'] == true ) {
+                                        echo 'Parcheggio Disponibile';
+                                    }
+                                    else{
+                                        echo "Parcheggio non disponibile";
+                                    }   
+                                ?>
+                            </td>
                             <td><?php echo $hotel['vote'] ?></td>
                             <td><?php echo $hotel['distance_to_center'] ?></td>
                         </tr>    
